@@ -1,0 +1,23 @@
+{
+  "name": "playwright-automation-adventurers-class",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipalimaa/playwright-automation-adventurers-class.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/filipalimaa/playwright-automation-adventurers-class/issues"
+  },
+  "homepage": "https://github.com/filipalimaa/playwright-automation-adventurers-class#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  }
+}

@@ -103,3 +103,24 @@ test('Validate WIS attribute', async ({ request }) => {
     expect(responseBody[5].description).toContain('personality');
     expect(responseBody[5].skills[0]).toBe('Deception');
   });
+
+    test('Response returns exactly 6 attributes', async ({ request }) => {
+    const response = await request.get(`https://adventurers-guild-api.vercel.app/api/attributes`);
+    const responseBody = await response.json();
+ 
+    expect(response.status()).toBe(200);
+    expect(responseBody).toHaveLength(6);
+  });
+ 
+  test('Each attribute has required fields with correct types', async ({ request }) => {
+    const response = await request.get(`https://adventurers-guild-api.vercel.app/api/attributes`);
+    const responseBody = await response.json();
+ 
+    for (const attribute of responseBody) {
+      expect(typeof attribute.id).toBe('number');
+      expect(typeof attribute.name).toBe('string');
+      expect(typeof attribute.shortname).toBe('string');
+      expect(typeof attribute.description).toBe('string');
+      expect(Array.isArray(attribute.skills)).toBe(true);
+    }
+  });

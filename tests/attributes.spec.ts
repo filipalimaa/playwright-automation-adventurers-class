@@ -79,3 +79,27 @@ test('Validate INT attribute', async ({ request }) => {
         );
     expect(responseBody[3].skills[0]).toBe('Arcana');
 });
+
+test('Validate WIS attribute', async ({ request }) => {
+    const response = await request.get(`https://adventurers-guild-api.vercel.app/api/attributes`);
+    const responseBody = await response.json();
+ 
+    expect(response.status()).toBe(200);
+    expect(responseBody[4].id).toBe(5);
+    expect(responseBody[4].name).toBe('Wisdom');
+    expect(responseBody[4].shortname).toBe('WIS');
+    expect(responseBody[4].description).toContain('perception');
+    expect(responseBody[4].skills[0]).toBe('Animal Handling');
+  });
+ 
+  test('Validate CHA attribute', async ({ request }) => {
+    const response = await request.get(`https://adventurers-guild-api.vercel.app/api/attributes`);
+    const responseBody = await response.json();
+ 
+    expect(response.status()).toBe(200);
+    expect(responseBody[5].id).toBe(6);
+    expect(responseBody[5].name).toBe('Charisma');
+    expect(responseBody[5].shortname).toBe('CHA');
+    expect(responseBody[5].description).toContain('personality');
+    expect(responseBody[5].skills[0]).toBe('Deception');
+  });

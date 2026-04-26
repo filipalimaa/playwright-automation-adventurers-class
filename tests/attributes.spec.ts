@@ -57,7 +57,7 @@ test('Validate CON attribute', async ({ request }) => {
     expect(responseBody[2].description).toBe(
     'Measures endurance, resilience, and physical toughness. It is commonly associated with health, stamina, and resistance to harm.',
         );
-    expect(responseBody[2].skills[0]).toBeNull;
+    expect(responseBody[2].skills[0]).toHaveLength(0);
 });
 
 test('Validate INT attribute', async ({ request }) => {

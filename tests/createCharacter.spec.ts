@@ -7,7 +7,7 @@ import { UPDATED_WARLOCK_CHAR, WARLOCK_CHAR } from "./data/create-character-data
 let token = '';
 let characterId = 0;
 
-test.describe.serial('Create Vael Phira, The Warlock Half-elf¢', () => {
+test.describe.serial('Create Vael Phira, The Warlock Half-elf', () => {
 
     test.beforeAll(async ({ request }) => {
         token = await getToken(request);
@@ -21,6 +21,8 @@ test.describe.serial('Create Vael Phira, The Warlock Half-elf¢', () => {
             WARLOCK_CHAR,
         );
 
+        console.log('Status:', characterResponse.status());
+        console.log('Body:', await characterResponse.json());
         expect(characterResponse.status()).toBe(201);
 
         const responseBody = await characterResponse.json();

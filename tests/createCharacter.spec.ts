@@ -1,4 +1,4 @@
-import { createCharacter, getCharacterById, getMyCharacter, updateCharacter } from "./client/character-client";
+import { createCharacter, deleteCharacter, getCharacterById, getMyCharacter, updateCharacter } from "./client/character-client";
 import { getToken } from "./client/token-client";
 import { expect, request, test } from '@playwright/test'
 /* import { BARBARIAN_CHAR, WIZARD_CHAR } from "./data/create-character-data";*/
@@ -70,6 +70,18 @@ test.describe.serial('Create Vael Phira, The Warlock Half-elf¢', () => {
         const body = await response.json();
         expect(body.level).toBe(UPDATED_WARLOCK_CHAR.level);
 
-    })
+    });
+
+    test('Delete Character', async ({ request }) => {
+        const response = await deleteCharacter(request, token, characterId);
+
+        expect(response.status()).toBe(200);
+    });
+
+    test('Deleted character returns 404', async ({ request }) => {
+        const response = await getCharacterById(request, token, characterId);
+
+        expect(response.status()).toBe(404);
+    });
 
 });

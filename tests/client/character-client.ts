@@ -69,5 +69,18 @@ export async function updateCharacter(
     });
 
     return updatedCharacterResponse;
+};
+
+// Função para apagar a minha character
+export async function deleteCharacter(
+    request: APIRequestContext,
+    token: string,
+    charId: number
+) {
+
+    const deleteMyCharacter = await request.delete('/api/characters/' + charId, {
+        headers: { Authorization: 'Bearer ' + token }
+    })
     
+    return deleteMyCharacter;
 }

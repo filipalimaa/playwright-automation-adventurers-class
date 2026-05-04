@@ -38,5 +38,19 @@ export async function getMyCharacter(
     const allCharacters = await response.json();
     const myCharacter = allCharacters.find((char: CharacterListItem) => char.name === 'Vael Phira, The Warlock Half-elf');
 
-    return myCharacter.id;
+    return myCharacter;
 };
+
+// Função p/ obter a minha character pelo Id
+export async function getCharacterById(
+    request: APIRequestContext,
+    token: string,
+    Id: number,
+) {
+
+    const response = await request.get('/api/characters/' + Id, {
+        headers: { Authorization: 'Bearer ' + token },
+    });
+    
+    return response;
+}

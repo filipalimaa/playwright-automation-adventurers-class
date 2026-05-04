@@ -10,4 +10,4 @@ attributes.spec.ts
 characterList.spec.ts
 skills.spec.ts
 species.spec.ts
-.venv
+.env

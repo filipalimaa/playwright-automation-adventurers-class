@@ -1,5 +1,5 @@
 import { APIRequestContext } from "@playwright/test";
-import { CharacterListItem } from "../types/create-character-response";
+import { CharacterListItem, updateCharacterType } from "../types/create-character-response";
 
 export type CreateCharacterType = {
     name: string,
@@ -53,4 +53,21 @@ export async function getCharacterById(
     });
     
     return response;
+};
+
+// Função p/ fazer update `minha character
+export async function updateCharacter(
+    request: APIRequestContext,
+    token: string,
+    charId: number,
+    data: updateCharacterType
+) {
+
+    const updatedCharacterResponse = await request.patch('/api/characters/' + charId, {
+        headers: { Authorization: 'Bearer ' + token },
+        data,
+    });
+
+    return updatedCharacterResponse;
+    
 }

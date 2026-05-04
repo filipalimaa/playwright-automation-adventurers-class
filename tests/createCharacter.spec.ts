@@ -1,8 +1,8 @@
-import { createCharacter, getCharacterById, getMyCharacter } from "./client/character-client";
+import { createCharacter, getCharacterById, getMyCharacter, updateCharacter } from "./client/character-client";
 import { getToken } from "./client/token-client";
 import { expect, request, test } from '@playwright/test'
 /* import { BARBARIAN_CHAR, WIZARD_CHAR } from "./data/create-character-data";*/
-import { WARLOCK_CHAR } from "./data/create-character-data";
+import { UPDATED_WARLOCK_CHAR, WARLOCK_CHAR } from "./data/create-character-data";
 
 let token = '';
 let characterId = 0;
@@ -62,6 +62,14 @@ test.describe.serial('Create Vael Phira, The Warlock Half-elf¢', () => {
         expect(characterBody.name).toBe('Vael Phira, The Warlock Half-elf');
     });
 
+    test('Update Character', async ({ request }) => {
+        
+        const response = await updateCharacter(request, token, characterId, UPDATED_WARLOCK_CHAR);
+        expect(response.status()).toBe(200);
 
+        const body = await response.json();
+        expect(body.level).toBe(UPDATED_WARLOCK_CHAR.level);
+
+    })
 
 });
